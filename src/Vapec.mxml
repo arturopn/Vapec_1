@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+							xmlns:s="library://ns.adobe.com/flex/spark"
+							xmlns:services="services.services.*"
+							applicationDPI="240"
+							firstView="views.VapecHomeView" title="Home"
+							>
+	
+
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		 
+		<s:WebService id="serviciosService"
+					  wsdl="{ConfigGlobal.WS_IMPORT_ENDPOINT}"
+					  result="serviciosService_resultHandler(event)"
+					  fault="serviciosService_faultHandler(event)"/>
+		<s:CallResponder id="getByteArrayResult"/>
+		<services:Services id="services"/>
+	</fx:Declarations>
+	
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		s|ActionBar
+		{
+			chromeColor: #6BA6F1;
+			titleAlign: center;
+		}
+		global
+		{
+			font-family: Arial;
+			color: #06549D;
+			content-background-color: #FFFFFF;
+		}
+		
+	</fx:Style>
+	 
+	<fx:Script>
+		<![CDATA[
+			import com.coltware.airxzip.*;
+			import com.pepsico.vapec.configs.ConfigGlobal;
+			import com.pepsico.vapec.db.SqliteBase;
+			import com.pepsico.vapec.sync.ImportManager;
+			
+			import deng.fzip.*;
+			
+			import flash.filesystem.File;
+			import flash.filesystem.FileMode;
+			import flash.filesystem.FileStream;
+			
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			import mx.logging.*;
+			import mx.logging.targets.*;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			  
+			use namespace zip_internal;
+			// variable declarations ------------------------------------
+			
+			private var file:File = File.userDirectory.resolvePath(ConfigGlobal.APP_NATIVE_PATH + "\\" + ConfigGlobal.WS_ZIP_FILENAME);
+			
+			private var myLogger:ILogger = Log.getLogger("MyCustomClass");
+			private var dbConn:SqliteBase = new SqliteBase();
+			
+			// getter/setters -------------------------------------------
+			
+			
+			// helper methods -------------------------------------------
+			
+			
+			// event handlers -------------------------------------------
+		    
+			
+			
+			public static function timedSave():void
+			{
+				trace("timedSave out");
+			}
+			
+			protected function serviciosService_resultHandler(event:ResultEvent):String
+			{
+				//file will get a backup physycal copy on the device, but the processing of the zip file is done diretly form onthefly ByteArray
+				var zipFile:ByteArray = event.result as ByteArray;
+				
+				var zip:FZip = new FZip();
+				zip.loadBytes(zipFile);
+				
+				var impMgr:ImportManager = new ImportManager();
+				
+				for (var i:int=0; i<zip.getFileCount(); i++)
+				{ 
+					impMgr.processZipTableEntry(zip.getFileAt(i));
+				}
+				
+				return "";
+				 
+				/*var dbConn:SqliteBase = new SqliteBase();
+				
+				for (var i:int=0; i<zip.getFileCount(); i++)
+				{ 
+					processZipFileEntry(zip.getFileAt(i));
+				}*/
+				
+				//var file:FileReference = new FileReference();
+				//file.save(zipFile, "SampleDoc.zip");	
+				
+				/*var tempFiles:File = File.applicationStorageDirectory;
+				tempFiles = tempFiles.resolvePath("images/");
+				trace(tempFiles.url); // app-storage:/images*/
+				
+			   //var file:File = File.applicationDirectory.resolvePath( "000465632682.asc" );
+			   
+			  /* trace(ConfigGlobal.APP_NATIVE_PATH);
+			   trace(File.userDirectory.resolvePath(ConfigGlobal.APP_NATIVE_PATH));
+			    
+				//Instantiate new file stream
+				var fs:FileStream = new FileStream();
+				
+				//add optional event listener to do some action once finished
+				 fs.addEventListener(Event.CLOSE, fileWrittenComplete);
+				
+				//open the file in write mode       
+				fs.openAsync(file, FileMode.WRITE);
+				
+				//write your data to file   
+				fs.writeBytes(zipFile);    
+				
+				//close the file stream
+				fs.close();
+				
+				//In windows it needs a small delay between closing filestream and opening the same file next
+				var timer:Timer = new Timer(100, 1);
+				timer.addEventListener(TimerEvent.TIMER_COMPLETE, unzip_sample1);
+				timer.start();
+				//Alert.show(zipFile.toString(), "Fault Information");
+				*/
+			}
+			
+			
+			
+			protected function fileWrittenComplete(event:Event):void
+			{
+			    trace("FILE DOWNLOAD COMPLETE");	
+			}
+			
+			protected function serviciosService_faultHandler(event:FaultEvent):void
+			{
+				//Alert.show(event.fault.faultString,"Fault Information");
+				
+			}
+			
+		/*	public function unzip_init(filename:String):ZipFileReader{
+				
+				 
+				var reader:ZipFileReader = new ZipFileReader();
+				var file:File = File.userDirectory.resolvePath(filename);
+				reader.open(file);
+				return reader;
+			}
+			
+			public function unzip_sample1(event:TimerEvent):void
+			{ 
+				//var dbConn:SqliteBase = new SqliteBase();
+				
+				//dbConn.start();
+				
+				var reader:ZipFileReader = new ZipFileReader(); 
+				
+				reader.open(file);
+				var list:Array = reader.getEntries();
+				
+				for each(var entry:ZipEntry in list){
+					
+					if(entry.isDirectory())
+					{
+						trace("DIR  --->" + entry.getFilename());
+					}
+					else
+					{
+						trace("FILE --->" + entry.getFilename() + "(" + entry.getCompressRate() + ")");
+						
+						var bytes:ByteArray = reader.unzip(entry);
+						var data:String = new String(bytes);
+						
+						loadedData = data.split(/\r\n|\n|\r/);
+						 
+						trace("First line:");
+						trace(loadedData[0]);
+						
+						loadedData.shift();
+						loadedData.pop();
+						for (var i:int=0; i<loadedData.length; i++)
+						{
+							var rowArray:Array = loadedData[i].split("|");
+							for (var x:int=0; x<rowArray.length; x++)
+							{
+								trace(rowArray[x]);
+							}
+							//loadedData[i] = {ID: rowArray[0], First: rowArray[1], Last: rowArray[2], Job: rowArray[3]};
+						}
+						 
+					}
+				}
+			}*/
+			  
+			
+			protected function button_clickHandler(event:MouseEvent):void
+			{
+				try
+				{
+				    serviciosService.getByteArray();
+				}
+				catch(e:Error)
+				{
+				    trace(e.getStackTrace());
+				}
+			}
+			
+			
+			
+		]]>
+	</fx:Script>
+
+	<s:titleContent>
+		<s:VGroup id="masterVGroup" width="100%">
+		<s:HGroup id="masterHGroup" gap="3" width="100%" verticalAlign="middle" horizontalAlign="center">
+		<s:Image source="assets/icons/vapec_logo.png" horizontalAlign="center"/>
+		</s:HGroup>
+</s:VGroup>
+	</s:titleContent>
+
+</s:ViewNavigatorApplication>

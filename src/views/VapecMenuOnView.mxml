@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="VapecMenuView" backKeyPressed="busy()">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		.boton{
+				chromeColor: #FFFFFF;
+				}
+		</fx:Style>
+	<fx:Script>
+		<![CDATA[
+			import com.pepsico.vapec.webservices.WebserviceManager;
+			
+		      //consoleLabel.text;
+			
+			protected function button_clickHandler(event:MouseEvent):void
+			{
+				var wsMgr:WebserviceManager = new WebserviceManager();
+				
+				try
+				{
+					wsMgr.importZip();
+				}
+				catch(e:Error)
+				{
+					trace(e.getStackTrace());
+				}
+				
+		
+			}
+		
+			protected function busy():void
+			{
+				{bi.visible = !bi.visible};	
+			}
+			
+			private var myColorTransform:ColorTransform;
+			private function glow(boton:Button):void
+			{
+				myColorTransform = new ColorTransform(1,1,1,1,50,50,50);
+				boton.transform.colorTransform = myColorTransform;
+				
+			}
+			
+			
+			
+		]]>
+	</fx:Script>
+	<s:Image source="assets/images/bienvenido.png" x="50" y="61" />
+	<s:Button  id="inicio" styleName="boton" icon="assets/icons/iniciodeldia.png" x="174" y="173" click="navigator.pushView(VapecInicioView); busy(); glow(this.inicio)"/>	
+	<s:Button id="coaching" styleName="boton" icon="assets/menu/coachingon.png"  x="573" y="203" click="navigator.pushView(VapecCoachingView); busy(); glow(this.coaching)" />
+	<s:Image source="assets/menu/agendaon.png" x="174" y="626"/>
+	<s:Image source="assets/menu/reporteson.png" x="587" y="626"/>
+	<s:Image source="assets/menu/findeldiaon.png" x="180" y="1000"/>
+	<s:Image source="assets/menu/comunicaron.png" x="601" y="968"/>
+	
+	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
+
+</s:View>

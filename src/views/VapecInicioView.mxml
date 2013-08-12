@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="VapecMenuView" backKeyPressed="busy()">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		.boton{
+			chromeColor: #FFFFFF;
+		}
+	</fx:Style>
+	<fx:Script>
+		<![CDATA[
+			import com.pepsico.vapec.webservices.WebserviceManager;
+			
+		      //consoleLabel.text;
+			
+			protected function button_clickHandler(event:MouseEvent):void
+			{
+				var wsMgr:WebserviceManager = new WebserviceManager();
+				
+				try
+				{
+					wsMgr.importZip();
+				}
+				catch(e:Error)
+				{
+					trace(e.getStackTrace());
+				}
+				
+		
+			}
+			
+		protected function links():void
+			{
+			{bi.visible = !bi.visible};
+				navigator.pushView(VapecMenuOnView);
+				
+			}
+			
+		protected function busy():void
+		{
+			{bi.visible = !bi.visible}
+		}
+			
+			private var myColorTransform:ColorTransform;
+			private function glow(boton:Button):void
+			{
+				myColorTransform = new ColorTransform(1,1,1,1,50,50,50);
+				boton.transform.colorTransform = myColorTransform;
+				
+			}
+			
+		]]>
+	</fx:Script>
+    <s:Image x="24" y="21" source="assets/images/supervisor_comp.png">		
+	</s:Image>
+	<s:Rect left="341" right="2" top="22" bottom="1250"
+			id="borderRect"
+			topLeftRadiusX="10"
+			topLeftRadiusY="10"
+			bottomLeftRadiusX="10"
+			bottomLeftRadiusY="10"
+			topRightRadiusX="0"
+			topRightRadiusY="0"
+			bottomRightRadiusX="0"
+			bottomRightRadiusY="0"
+			>
+		<s:stroke>
+			<s:SolidColorStroke id="borderStroke" color="0x6BA6F1" weight="2"/>
+		</s:stroke>
+		<s:fill>
+			<s:SolidColor id="bgFill" color="0x6BA6F1"  alpha="1" />
+		</s:fill>
+		 
+	</s:Rect>
+	<s:Label fontFamily="Futura" fontSize="38" color="#FFFFFF" left="270" top="9">
+		GERENTE SURCURSAL MINAS
+	</s:Label>
+	<s:Label fontFamily="Futura" fontSize="30" color="#6BA6F1" left="250" top="106">
+		Nombre: Arturo Pérez Navarro
+		Estado Civil: Casado
+		Edad: 26 años
+	</s:Label>
+	<s:Image x="0" y="326" source="assets/images/barra.png">
+		
+	</s:Image>
+	<s:Image x="40" y="415" source="assets/images/codigo.png">
+		
+	</s:Image>
+	<s:TextInput x="40" y="482" text="123...">
+		
+	</s:TextInput>
+	<s:Image source="assets/images/lupa.png" x="493" y="487">
+		
+	</s:Image>
+	
+	<s:Image source="assets/images/hora_inicio.png" x="0" y="559">
+		
+	</s:Image>
+	<s:TextArea x="50" y="627" width="800" height="151" text="Recordatorio de Vapec" contentBackgroundColor="#ffffff">
+		
+	</s:TextArea>
+	
+	<s:Label fontFamily="Futura" fontSize="40" color="#6BA6F1" x="-40" y="756">
+		Responsable
+	</s:Label>
+	
+	<s:Image source="assets/images/sup.png" x="50" y="843">
+		
+	</s:Image>
+	<s:RadioButton x="154" y="873">
+		
+	</s:RadioButton>
+	
+	<s:Image source="assets/images/vend.png" x="223" y="846">
+		
+	</s:Image>
+	<s:RadioButton x="348" y="873">
+		
+	</s:RadioButton>
+
+	<s:ComboBox x="545" y="873" contentBackgroundColor="#ffffff">
+		<s:dataProvider>
+		<s:ArrayList>
+			<fx:Object data="data1"></fx:Object>
+			<fx:Object data="data2"></fx:Object>
+			<fx:Object data="data3"></fx:Object>
+			<fx:Object data="data4"></fx:Object>
+		</s:ArrayList>
+		</s:dataProvider>
+	</s:ComboBox>
+	
+	<s:Image source="assets/images/lupa.png" x="493" y="873" >
+		
+	</s:Image>
+	
+	<s:TextArea x="50" y="1000" width="800" height="251" >
+		
+	</s:TextArea>
+	
+	<s:Button id="ok" styleName="boton" icon="assets/images/ok.png" x="803" y="1273" click="links(); glow(this.ok);" >
+	</s:Button>
+	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
+	
+
+	 
+</s:View>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="HomeView" backKeyPressed="busy()">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.pepsico.vapec.webservices.WebserviceManager;
+			
+		      //consoleLabel.text;
+			
+			protected function button_clickHandler(event:MouseEvent):void
+			{
+				var wsMgr:WebserviceManager = new WebserviceManager();
+				
+				try
+				{
+					wsMgr.importZip();
+				}
+				catch(e:Error)
+				{
+					trace(e.getStackTrace());
+				}
+				
+				consoleLabel.text = "End Import.";
+			}
+			
+			protected function busy():void
+			{
+				{bi.visible = !bi.visible};	
+			}
+		]]>
+	</fx:Script>
+	
+	<s:BitmapImage id="home" x="0" y="0" width="900" height="1443"
+			 source="@Embed('assets/images/loginbg.png')"/>
+	<s:Label id="consoleLabel" x="276" y="11" />
+	<s:Label text="Usuario:" x="276" y="950"/>
+	<s:TextInput enabled="true" text="" x="400" y="930"/>
+	<s:Label text="Contraseña:" x="236" y="1050"/>
+	<s:TextInput enabled="true" text="" x="400" y="1030"/>
+	<s:Button x="609" y="1118" width="231" label="ENTRAR" color="blue" click="navigator.pushView(VapecMenuView); busy()"/>
+	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
+</s:View>

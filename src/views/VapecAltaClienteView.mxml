@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="VapecMenuView" backKeyPressed="busy()">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		.tabla
+		{
+			alternatingRowColors:#FFFFFF,#6BA6F1;
+			borderVisible:"false";
+			fontSize:21;
+			lineHeight:"120%";
+			rollOverColor:"#FF7F00";
+			selectionColor:"0xFF7F00";
+		}
+		.boton{
+			chromeColor: #FFFFFF;
+		}
+	</fx:Style>
+	<fx:Script>
+		<![CDATA[
+			import com.pepsico.vapec.webservices.WebserviceManager;
+			
+		      //consoleLabel.text;
+			
+			protected function button_clickHandler(event:MouseEvent):void
+			{
+				var wsMgr:WebserviceManager = new WebserviceManager();
+				
+				try
+				{
+					wsMgr.importZip();
+				}
+				catch(e:Error)
+				{
+					trace(e.getStackTrace());
+				}
+				
+		
+			}	
+			
+			protected function busy():void
+			{
+				{bi.visible = !bi.visible}
+			}
+			
+		]]>
+	</fx:Script>
+
+	<!--<s:Image x="31" y="44" source="assets/images/subirfoto.png">
+		
+	</s:Image>
+	<s:ComboBox x="464" y="48" width="416" contentBackgroundColor="#ffffff">
+		
+	</s:ComboBox>
+	<s:Image x="411" y="42" source="assets/images/lupa.png">
+		
+	</s:Image>
+	<s:TextArea x="338" y="120" width="532" height="187" contentBackgroundColor="#ffffff">
+		
+	</s:TextArea>-->
+
+
+
+	<s:Image x="0" y="52" source="assets/images/titles/altaCliente.png">
+		
+	</s:Image>
+	
+	<s:Group y="150" x="50">
+		<s:Label text="Nombre"></s:Label>
+		<s:TextInput x="143" y="-11" width="665"></s:TextInput>
+	</s:Group>
+	
+	<s:Group y="250" x="50">
+		<s:Label text="Referencia"></s:Label>
+		<s:TextInput x="140" y="-11" width="665"></s:TextInput>
+	</s:Group>
+	
+	<s:Group y="350" x="50">
+		<s:Label text="Dirección"></s:Label>
+		<s:TextInput x="140" y="-11" width="665"></s:TextInput>
+	</s:Group>
+	
+	<s:Group y="450" x="50">
+		<s:Label text="Número"></s:Label>
+		<s:TextInput x="140" y="-11" width="665"></s:TextInput>
+	</s:Group>
+	
+	<s:Group y="550" x="50">
+		<s:Label text="Teléfono"></s:Label>
+		<s:TextInput x="140" y="-11" width="665"></s:TextInput>
+	</s:Group>
+	
+	<s:Group y="650" x="50">
+		<s:Label text="Ruta"></s:Label>
+		<s:TextInput x="140" y="-11" width="665"></s:TextInput>
+	</s:Group>
+	
+	<s:Group y="750" x="50">
+		<s:Label text="Tipo"></s:Label>
+		<s:TextInput x="140" y="-11" width="665"></s:TextInput>
+	</s:Group>
+	
+	<s:Group y="850" x="50">
+		<s:Label text="Nivel"></s:Label>
+		<s:TextInput x="140" y="-11" width="665"></s:TextInput>
+	</s:Group>
+	
+	<s:Button id="guardar" styleName="boton" x="50" y="1192" width="118" height="130" icon="assets/icons/guardar.png" click="busy();"/>
+
+	<s:Button id="ok" styleName="boton" icon="assets/images/ok.png" x="787" y="1192" click="busy(); navigator.pushView(VapecInformacionClienteView); " >
+	</s:Button>
+	
+	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
+
+</s:View>

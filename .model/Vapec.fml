@@ -1,0 +1,40 @@
+
+<model xmlns="http://ns.adobe.com/Fiber/1.0">
+  <annotation name="ActionScriptGeneration">
+    <item name="FullyQualifyReferences">true</item>
+  </annotation>
+  <service name="Services">
+    <annotation name="ActionScriptGeneration">
+      <item name="WSDL-service">Services</item>
+      <item name="ServiceType">WebService</item>
+      <item name="WSDL">http://192.168.2.4:8991/sicsweb-services/Services?WSDL</item>
+      <item name="Package">services.services</item>
+      <item name="WSDL-port">SwBaseServicesWSInterfacePort</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">WebService</item>
+    </annotation>
+    <annotation name="WSDLCollectionElementTypes">
+      <item name="http://com.seven.web.sics.model.transactions/IServices.xsd,ArrayOfcom_seven_web_sics_model_beans_PlazaBean">arrayType::http://schemas.xmlsoap.org/soap/encoding/,arrayType</item>
+      <item name="http://com.seven.web.sics.model.transactions/IServices.xsd,ArrayOfString">arrayType::http://schemas.xmlsoap.org/soap/encoding/,arrayType</item>
+      <item name="http://com.seven.web.sics.model.transactions/IServices.xsd,ArrayOfcom_seven_web_sics_model_beans_GenericIdValorBean">arrayType::http://schemas.xmlsoap.org/soap/encoding/,arrayType</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
+      <item name="WSDL-endpoint">http://192.168.2.4:8991/sicsweb-services/Services</item>
+      <item name="LINKED_FILE"></item>
+    </annotation>
+    <function name="getByteArray" return-type="blob">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="getByteArray">http://com/seven/web/sics/model/transactions/SwBaseServicesWSInterface.wsdl,getByteArray</item>
+        <item name="SOAPAction"></item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">blob</item>
+      </annotation>
+    </function>
+  </service>
+</model>
