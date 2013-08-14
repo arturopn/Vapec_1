@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="VapecMenuView" backKeyPressed="busy()">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		
+		
+	</fx:Style>
+	<fx:Script>
+		<![CDATA[
+			import com.pepsico.vapec.webservices.WebserviceManager;
+			
+		      //consoleLabel.text;
+			
+			protected function button_clickHandler(event:MouseEvent):void
+			{
+				var wsMgr:WebserviceManager = new WebserviceManager();
+				
+				try
+				{
+					wsMgr.importZip();
+				}
+				catch(e:Error)
+				{
+					trace(e.getStackTrace());
+				}
+				
+		
+			}	
+			
+			protected function busy():void
+			{
+				{bi.visible = !bi.visible}
+			}
+			
+		]]>
+	</fx:Script>
+
+	
+	<s:SkinnableContainer x="0" y="29" styleName="title">
+	<s:Label  color="#FFFFFF" text="2135-Competencias"></s:Label>
+	</s:SkinnableContainer>
+	
+	<s:Group x="10" y="81">
+		<s:Label x="28" y="81" color="#6BA6F1" fontFamily="Futura" fontSize="30">
+			Cliente: 1 El Sol Para Todos
+		</s:Label>
+		<s:ComboBoxGridItemEditor x="158" y="167">			
+		</s:ComboBoxGridItemEditor>
+		<s:Label x="27" y="169" text="GRUPO:" styleName="bigLabel">			
+		</s:Label>
+	</s:Group>
+	
+	<s:Group x="0" y="420">
+		<s:Label x="13" y="-5" styleName="bigLabel">
+			Exhibidores Disponibles
+		</s:Label>
+		<s:DataGrid x="0" y="40" width="900" height="184" styleName="tabla">
+			<s:columns>
+				<s:ArrayList>
+					<s:GridColumn dataField="CLAVE"></s:GridColumn>
+					<s:GridColumn dataField="NOMBRE"></s:GridColumn>
+					<s:GridColumn dataField="PRIMARIO"></s:GridColumn>
+				</s:ArrayList>
+			</s:columns>
+			<s:dataProvider>
+				<fx:Object>
+					<fx:CLAVE>MPT</fx:CLAVE>
+					<fx:NOMBRE>MOSTRADOR PRESENCIA</fx:NOMBRE>
+					<fx:PRIMARIO>P</fx:PRIMARIO>
+				</fx:Object>
+				<fx:Object>
+					<fx:CLAVE>MPT</fx:CLAVE>
+					<fx:NOMBRE>MOSTRADOR PRESENCIA</fx:NOMBRE>
+					<fx:PRIMARIO>P</fx:PRIMARIO>
+				</fx:Object>
+				<fx:Object>
+					<fx:CLAVE>MPT</fx:CLAVE>
+					<fx:NOMBRE>MOSTRADOR PRESENCIA</fx:NOMBRE>
+					<fx:PRIMARIO>P</fx:PRIMARIO>
+				</fx:Object>
+				<fx:Object>
+					<fx:CLAVE>MPT</fx:CLAVE>
+					<fx:NOMBRE>MOSTRADOR PRESENCIA</fx:NOMBRE>
+					<fx:PRIMARIO>P</fx:PRIMARIO>
+				</fx:Object>
+				<fx:Object>
+					<fx:CLAVE>MPT</fx:CLAVE>
+					<fx:NOMBRE>MOSTRADOR PRESENCIA</fx:NOMBRE>
+					<fx:PRIMARIO>P</fx:PRIMARIO>
+				</fx:Object>
+				<fx:Object>
+					<fx:CLAVE>MPT</fx:CLAVE>
+					<fx:NOMBRE>MOSTRADOR PRESENCIA</fx:NOMBRE>
+					<fx:PRIMARIO>P</fx:PRIMARIO>
+				</fx:Object>
+				<fx:Object>
+					<fx:CLAVE>MPT</fx:CLAVE>
+					<fx:NOMBRE>MOSTRADOR PRESENCIA</fx:NOMBRE>
+					<fx:PRIMARIO>P</fx:PRIMARIO>
+				</fx:Object>
+			</s:dataProvider>
+		</s:DataGrid>
+	</s:Group>
+	
+	<s:Group y="700" width="900" height="184">
+		<s:Button x="295" y="43" icon="assets/icons/up.png" styleName="boton"></s:Button>
+		<s:Button x="463" y="43" icon="assets/icons/down.png" styleName="boton"></s:Button>
+	</s:Group>
+	
+	<s:Group x="0" y="890">
+		<s:Label x="13" y="-5" styleName="bigLabel">
+			Exhibidores Seleccionados
+		</s:Label>
+		<s:DataGrid x="0" y="40" width="900" height="184" styleName="tabla">
+			<s:columns>
+				<s:ArrayList>
+					<s:GridColumn dataField="CLAVE"></s:GridColumn>
+					<s:GridColumn dataField="NOMBRE"></s:GridColumn>
+					<s:GridColumn dataField="PRIMARIO"></s:GridColumn>
+				</s:ArrayList>
+			</s:columns>
+			<s:dataProvider>
+				<fx:Object>
+					<fx:CLAVE>MPT</fx:CLAVE>
+					<fx:NOMBRE>MOSTRADOR PRESENCIA</fx:NOMBRE>
+					<fx:PRIMARIO>P</fx:PRIMARIO>
+				</fx:Object>
+				<fx:Object>
+					<fx:CLAVE>MPT</fx:CLAVE>
+					<fx:NOMBRE>MOSTRADOR PRESENCIA</fx:NOMBRE>
+					<fx:PRIMARIO>P</fx:PRIMARIO>
+				</fx:Object>
+				<fx:Object>
+					<fx:CLAVE>MPT</fx:CLAVE>
+					<fx:NOMBRE>MOSTRADOR PRESENCIA</fx:NOMBRE>
+					<fx:PRIMARIO>P</fx:PRIMARIO>
+				</fx:Object>
+				<fx:Object>
+					<fx:CLAVE>MPT</fx:CLAVE>
+					<fx:NOMBRE>MOSTRADOR PRESENCIA</fx:NOMBRE>
+					<fx:PRIMARIO>P</fx:PRIMARIO>
+				</fx:Object>
+				<fx:Object>
+					<fx:CLAVE>MPT</fx:CLAVE>
+					<fx:NOMBRE>MOSTRADOR PRESENCIA</fx:NOMBRE>
+					<fx:PRIMARIO>P</fx:PRIMARIO>
+				</fx:Object>
+				<fx:Object>
+					<fx:CLAVE>MPT</fx:CLAVE>
+					<fx:NOMBRE>MOSTRADOR PRESENCIA</fx:NOMBRE>
+					<fx:PRIMARIO>P</fx:PRIMARIO>
+				</fx:Object>
+				<fx:Object>
+					<fx:CLAVE>MPT</fx:CLAVE>
+					<fx:NOMBRE>MOSTRADOR PRESENCIA</fx:NOMBRE>
+					<fx:PRIMARIO>P</fx:PRIMARIO>
+				</fx:Object>
+			</s:dataProvider>
+		</s:DataGrid>
+	</s:Group>
+	<s:Button x="629" y="1271" icon="assets/icons/cancelar.png" styleName="boton"></s:Button>
+	<s:Button x="759" y="1283" icon="assets/icons/guardar.png" styleName="boton"></s:Button>
+   
+	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
+
+
+</s:View>

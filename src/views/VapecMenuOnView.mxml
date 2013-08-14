@@ -6,10 +6,7 @@
 	</fx:Declarations>
 	<fx:Style>
 		@namespace s "library://ns.adobe.com/flex/spark";
-		.boton{
-			skinClass: ClassReference("skins.botonSkin");
-				chromeColor: #FFFFFF;
-				}
+	
 		</fx:Style>
 	<fx:Script>
 		<![CDATA[

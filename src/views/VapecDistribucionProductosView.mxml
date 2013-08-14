@@ -4,18 +4,6 @@
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	<fx:Style>
-		@namespace s "library://ns.adobe.com/flex/spark";
-		.tabla
-		{
-			alternatingRowColors:#FFFFFF,#6BA6F1;
-			borderVisible:"false";
-			fontSize:21;
-			lineHeight:"120%";
-			rollOverColor:"#FF7F00";
-			selectionColor:"0xFF7F00";
-		}
-	</fx:Style>
 	<fx:Script>
 		<![CDATA[
 			import com.pepsico.vapec.webservices.WebserviceManager;
