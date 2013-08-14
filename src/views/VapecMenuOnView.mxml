@@ -7,6 +7,7 @@
 	<fx:Style>
 		@namespace s "library://ns.adobe.com/flex/spark";
 		.boton{
+			skinClass: ClassReference("skins.botonSkin");
 				chromeColor: #FFFFFF;
 				}
 		</fx:Style>
@@ -49,8 +50,8 @@
 			
 		]]>
 	</fx:Script>
-	<s:Image source="assets/images/bienvenido.png" x="50" y="61" />
-	<s:Button  id="inicio" styleName="boton" icon="assets/icons/iniciodeldia.png" x="174" y="173" click="navigator.pushView(VapecInicioView); busy(); glow(this.inicio)"/>	
+	<s:Image source="assets/images/bienvenido.png" x="50" y="60" />
+	<s:Button  id="inicio" styleName="boton"  icon="assets/icons/iniciodeldia.png" x="174" y="173" click="navigator.pushView(VapecInicioView); busy(); glow(this.inicio)"/>	
 	<s:Button id="coaching" styleName="boton" icon="assets/menu/coachingon.png"  x="573" y="203" click="navigator.pushView(VapecCoachingView); busy(); glow(this.coaching)" />
 	<s:Image source="assets/menu/agendaon.png" x="174" y="626"/>
 	<s:Image source="assets/menu/reporteson.png" x="587" y="626"/>

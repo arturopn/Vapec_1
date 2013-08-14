@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SparkSkinning/mySkins/BackgroundFillSkin.mxml -->
+<s:Skin 
+	xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	xmlns:s="library://ns.adobe.com/flex/spark" minWidth="900" minHeight="10" alpha.disabled="0.5">
+	
+	<fx:Metadata>
+		[HostComponent("spark.components.SkinnableContainer")]
+	</fx:Metadata> 
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="disabled" />
+	</s:states>
+	
+
+	
+	<!-- background fill -->
+	<s:Rect id="background" left="1" top="1" right="0" bottom="1">
+		<s:fill>
+			<s:SolidColor id="bgFill" color="0x6BA6F1"/>
+		</s:fill>
+	</s:Rect>
+	
+	<s:Group id="contentGroup" left="10" right="10" top="10" bottom="10">
+		<s:layout>
+			<s:VerticalLayout/>
+		</s:layout>
+	</s:Group>
+	
+</s:Skin>
