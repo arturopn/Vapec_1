@@ -42,6 +42,8 @@
 	
 	<s:BitmapImage id="home" x="0" y="0" width="900" height="1443"
 			 source="@Embed('assets/images/loginbg.png')"/>
+	<s:Image source="assets/icons/prueba1_paraweb.png">
+	</s:Image>
 	<s:Label id="consoleLabel" x="276" y="11" />
 	<s:Label text="Usuario:" x="276" y="950"/>
 	<s:TextInput enabled="true" text="" x="400" y="930"/>
