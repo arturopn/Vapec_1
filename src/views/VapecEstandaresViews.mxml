@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="VapecEstandaresViews">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		.tabla
+		{
+			alternatingRowColors:#FFFFFF,#6BA6F1;
+			borderVisible:"false";
+			fontSize:21;
+			lineHeight:"120%";
+			rollOverColor:"#FF7F00";
+			selectionColor:"0xFF7F00";
+		}
+		.boton{
+			chromeColor: #FFFFFF;
+		}
+	</fx:Style>
+	<fx:Script>
+		<![CDATA[
+			import com.pepsico.vapec.webservices.WebserviceManager;
+			
+			//consoleLabel.text;
+			
+			protected function button_clickHandler(event:MouseEvent):void
+			{
+				var wsMgr:WebserviceManager = new WebserviceManager();
+				
+				try
+				{
+					wsMgr.importZip();
+				}
+				catch(e:Error)
+				{
+					trace(e.getStackTrace());
+				}
+				
+				
+			}	
+			
+			protected function busy():void
+			{
+				{bi.visible = !bi.visible}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:SkinnableContainer x="-1" y="44" width="901" styleName="title">
+		<s:Label  color="#FFFFFF" text="2130 Estandares">
+			
+		</s:Label>
+	</s:SkinnableContainer>
+	
+	<s:Button id="guardar" styleName="boton" x="50" y="1192" width="118" height="130" icon="assets/icons/guardar.png" click="busy();"/>
+	
+	<s:Button id="ok" styleName="boton" icon="assets/images/ok.png" x="787" y="1192" click="busy(); navigator.pushView(VapecInformacionClienteView); " >
+	</s:Button>
+	
+	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
+	<s:Group x="2" y="94" width="890" height="56" styleName="tabla">
+		<s:Label x="10" y="10" width="81" height="27" text="ALP&#xd;"/>
+		<s:RadioButton x="621" y="4" width="92" height="46" label="SI"/>
+		<s:RadioButton x="752" y="5" width="128" height="46" label="NO"/>
+	</s:Group>
+	
+	<s:Group x="2" y="194" width="890" height="56" styleName="tabla">
+		<s:Label x="10" y="10" width="81" height="27" text="EA&#xd;"/>
+		<s:RadioButton x="621" y="4" width="92" height="46" label="SI"/>
+		<s:RadioButton x="752" y="5" width="128" height="46" label="NO"/>
+	</s:Group>
+	
+	<s:Group x="2" y="294" width="890" height="56" styleName="tabla">
+		<s:Label x="10" y="10" width="81" height="27" text="PD&#xd;"/>
+		<s:RadioButton x="621" y="4" width="92" height="46" label="SI"/>
+		<s:RadioButton x="752" y="5" width="128" height="46" label="NO"/>
+	</s:Group>
+	
+	<s:Group x="2" y="394" width="890" height="56" styleName="tabla">
+		<s:Label x="10" y="10" width="81" height="27" text="PEC09&#xd;"/>
+		<s:RadioButton x="621" y="4" width="92" height="46" label="SI"/>
+		<s:RadioButton x="752" y="5" width="128" height="46" label="NO"/>
+	</s:Group>
+</s:View>

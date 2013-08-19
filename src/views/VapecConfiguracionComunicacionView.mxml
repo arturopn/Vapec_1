@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="VapecConfiguracionComunicacionView">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		.tabla
+		{
+			alternatingRowColors:#FFFFFF,#6BA6F1;
+			borderVisible:"false";
+			fontSize:21;
+			lineHeight:"120%";
+			rollOverColor:"#FF7F00";
+			selectionColor:"0xFF7F00";
+		}
+		.boton{
+			chromeColor: #FFFFFF;
+		}
+	</fx:Style>
+	<fx:Script>
+		<![CDATA[
+			import com.pepsico.vapec.webservices.WebserviceManager;
+			
+			//consoleLabel.text;
+			
+			protected function button_clickHandler(event:MouseEvent):void
+			{
+				var wsMgr:WebserviceManager = new WebserviceManager();
+				
+				try
+				{
+					wsMgr.importZip();
+				}
+				catch(e:Error)
+				{
+					trace(e.getStackTrace());
+				}
+				
+				
+			}	
+			
+			protected function busy():void
+			{
+				{bi.visible = !bi.visible}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:SkinnableContainer x="-1" y="44" width="901" styleName="title">
+		<s:Label  color="#FFFFFF" text="2152 CONFIGURACIÓN DE COMUNICACIÓN">
+			
+		</s:Label>
+	</s:SkinnableContainer>
+	
+	<s:Button id="guardar" styleName="boton" x="50" y="1192" width="118" height="130" icon="assets/icons/guardar.png" click="busy();"/>
+	
+	<s:Button id="ok" styleName="boton" icon="assets/images/ok.png" x="787" y="1192" click="busy(); navigator.pushView(VapecInformacionClienteView); " >
+	</s:Button>
+	
+	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
+	<s:SkinnableContainer x="90" textAlign="center" y="142" width="740" styleName="title">
+		<s:Label  color="#FFFFFF" text="CAMBIAR CONFIGURACIÓN">
+			
+		</s:Label>
+	</s:SkinnableContainer>
+	
+	<s:Group y="215" x="46">
+		<s:Label text="IP Servidor:"></s:Label>
+		<s:TextInput x="188" y="-11" width="620"></s:TextInput>
+	</s:Group>
+	
+	<s:Group x="79" y="335" width="762" height="357">
+		<s:SkinnableContainer width="763" styleName="title" textAlign="center">
+			<s:Label  color="#FFFFFF" text="DESEA UTILIZAR HTTPS">
+			</s:Label>
+		</s:SkinnableContainer>
+		
+		<s:Group x="8" y="64">
+			<s:Label text="IP Servidor:"></s:Label>
+			<s:TextInput x="188" y="0" width="536" height="40"></s:TextInput>
+		</s:Group>
+		<s:CheckBox x="9" y="118" height="63" label="Loging"/>
+		<s:TextInput x="187" y="128" width="536" height="37"></s:TextInput>
+		<s:Group x="7" y="195">
+			<s:Label text="Contraseña:"></s:Label>
+			<s:TextInput x="188" y="0" width="536" height="40"></s:TextInput>
+		</s:Group>
+		
+		<s:Group x="7" y="255">
+			<s:Label text="Verifique&#xd;su Contraseña:"></s:Label>
+			<s:TextInput x="188" y="10" width="536" height="40"></s:TextInput>
+		</s:Group>
+		
+	</s:Group>
+</s:View>
