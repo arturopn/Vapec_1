@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="VapecMenuView" backKeyPressed="busy()">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		
+		
+	</fx:Style>
+	<fx:Script>
+		<![CDATA[
+			import com.pepsico.vapec.webservices.WebserviceManager;
+			
+		      //consoleLabel.text;
+			
+			protected function button_clickHandler(event:MouseEvent):void
+			{
+				var wsMgr:WebserviceManager = new WebserviceManager();
+				
+				try
+				{
+					wsMgr.importZip();
+				}
+				catch(e:Error)
+				{
+					trace(e.getStackTrace());
+				}
+				
+		
+			}	
+			
+			protected function busy():void
+			{
+				{bi.visible = !bi.visible}
+			}
+			
+		]]>
+	</fx:Script>
+
+	
+	<s:SkinnableContainer x="0" y="29" styleName="title">
+	<s:Label  color="#FFFFFF" text="2135-Competencias"></s:Label>
+	</s:SkinnableContainer>
+	
+	<s:Group x="10" y="81">
+		<s:Label x="17" y="13" color="#6BA6F1" fontFamily="Futura" fontSize="30">
+			Cliente: 1 El Sol Para Todos
+		</s:Label>
+	</s:Group>
+	
+	<s:Group  x="0" y="229">
+		<s:SkinnableContainer styleName="title">
+		<s:Label  color="#FFFFFF" text="Barcel"></s:Label>	
+		</s:SkinnableContainer>
+		<s:RadioButton  styleName="radioWhite"  label="Si" x="450" y="0">	</s:RadioButton>
+		<s:RadioButton styleName="radioWhite" label="No" x="650">	</s:RadioButton>
+	</s:Group>
+	
+	<s:Group  x="0" y="329">
+		<s:SkinnableContainer styleName="title">
+			<s:Label  color="#FFFFFF" text="Bokados"></s:Label>	
+		</s:SkinnableContainer>
+		<s:RadioButton  styleName="radioWhite"  label="Si" x="450" y="0">	</s:RadioButton>
+		<s:RadioButton styleName="radioWhite" label="No" x="650">	</s:RadioButton>
+	</s:Group>
+	
+	<s:Group  x="0" y="429">
+		<s:SkinnableContainer styleName="title">
+			<s:Label  color="#FFFFFF" text="Bot Local Rio"></s:Label>	
+		</s:SkinnableContainer>
+		<s:RadioButton  styleName="radioWhite"  label="Si" x="450" y="0">	</s:RadioButton>
+		<s:RadioButton styleName="radioWhite" label="No" x="650">	</s:RadioButton>
+	</s:Group>
+	
+	<s:Group  x="0" y="429">
+		<s:SkinnableContainer styleName="title">
+			<s:Label  color="#FFFFFF" text="Bydsa"></s:Label>	
+		</s:SkinnableContainer>
+		<s:RadioButton  styleName="radioWhite"  label="Si" x="450" y="0">	</s:RadioButton>
+		<s:RadioButton styleName="radioWhite" label="No" x="650">	</s:RadioButton>
+	</s:Group>
+	
+	<s:Group  x="0" y="529">
+		<s:SkinnableContainer styleName="title">
+			<s:Label  color="#FFFFFF" text="La Lupita"></s:Label>	
+		</s:SkinnableContainer>
+		<s:RadioButton  styleName="radioWhite"  label="Si" x="450" y="0">	</s:RadioButton>
+		<s:RadioButton styleName="radioWhite" label="No" x="650">	</s:RadioButton>
+	</s:Group>
+	
+	<s:Group  x="0" y="629">
+		<s:SkinnableContainer styleName="title">
+			<s:Label  color="#FFFFFF" text="Otros"></s:Label>	
+		</s:SkinnableContainer>
+		<s:RadioButton  styleName="radioWhite"  label="Si" x="450" y="0">	</s:RadioButton>
+		<s:RadioButton styleName="radioWhite" label="No" x="650">	</s:RadioButton>
+	</s:Group>
+	
+	<s:Group  x="0" y="729">
+		<s:SkinnableContainer styleName="title">
+			<s:Label  color="#FFFFFF" text="Provi"></s:Label>	
+		</s:SkinnableContainer>
+		<s:RadioButton  styleName="radioWhite"  label="Si" x="450" y="0">	</s:RadioButton>
+		<s:RadioButton styleName="radioWhite" label="No" x="650">	</s:RadioButton>
+	</s:Group>
+	
+
+	
+	<s:Button x="742" y="1241" icon="assets/icons/ok.png" styleName="boton"></s:Button>
+   
+	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
+
+
+</s:View>

@@ -1,0 +1,37 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+s|ActionBar
+{
+	chromeColor: #6BA6F1;
+	titleAlign: center;
+}
+global
+{
+	font-family: Futura;
+	color: #06549D;
+	content-background-color: #FFFFFF;
+}
+.tabla
+{
+	alternatingRowColors:#FFFFFF,#6BA6F1;
+	borderVisible:"false";
+	fontSize:21;
+	lineHeight:"120%";
+	rollOverColor:"#FF7F00";
+	selectionColor:"0xFF7F00";
+}
+.title{
+	skinClass:ClassReference("skins.titlesSkin");
+}
+.boton{
+	skinClass: ClassReference("skins.botonSkin");
+	chromeColor: #FFFFFF;
+}
+.bigLabel{
+	fontSize:30;
+	color:#6BA6F1;    
+}
+
+.radioWhite{
+color:#FFFFFF;
+}

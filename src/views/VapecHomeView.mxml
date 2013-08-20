@@ -4,6 +4,13 @@
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		.boton{
+			skinClass:ClassReference("skins.botonSkin");
+			/*chromeColor: #FFFFFF;*/
+		}
+	</fx:Style>
 	<fx:Script>
 		<![CDATA[
 			import com.pepsico.vapec.webservices.WebserviceManager;
@@ -35,11 +42,13 @@
 	
 	<s:BitmapImage id="home" x="0" y="0" width="900" height="1443"
 			 source="@Embed('assets/images/loginbg.png')"/>
+	<s:Image source="assets/icons/prueba1_paraweb.png">
+	</s:Image>
 	<s:Label id="consoleLabel" x="276" y="11" />
 	<s:Label text="Usuario:" x="276" y="950"/>
 	<s:TextInput enabled="true" text="" x="400" y="930"/>
 	<s:Label text="Contraseña:" x="236" y="1050"/>
 	<s:TextInput enabled="true" text="" x="400" y="1030"/>
-	<s:Button x="609" y="1118" width="231" label="ENTRAR" color="blue" click="navigator.pushView(VapecMenuView); busy()"/>
+	<s:Button x="161" styleName="boton" y="145" width="231" label="ENTRAR" color="blue" click="navigator.pushView(S2135Competencias); busy()"/>
 	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
 </s:View>

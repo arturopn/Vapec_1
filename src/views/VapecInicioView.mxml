@@ -7,7 +7,8 @@
 	<fx:Style>
 		@namespace s "library://ns.adobe.com/flex/spark";
 		.boton{
-			chromeColor: #FFFFFF;
+			skinClass:ClassReference("skins.botonSkin");
+			/*chromeColor: #FFFFFF;*/
 		}
 	</fx:Style>
 	<fx:Script>
@@ -140,7 +141,7 @@
 		
 	</s:TextArea>
 	
-	<s:Button id="ok" styleName="boton" icon="assets/images/ok.png" x="803" y="1273" click="links(); glow(this.ok);" >
+	<s:Button id="ok" styleName="boton" icon="assets/images/ok.png" x="615" y="437" click="links(); glow(this.ok);" >
 	</s:Button>
 	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
 	
