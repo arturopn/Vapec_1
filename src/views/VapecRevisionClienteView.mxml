@@ -142,5 +142,6 @@
 	</s:DataGrid> 
 	
 	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
-
+	<s:Button id="ok" styleName="boton" icon="assets/images/ok.png" x="776" y="1201" click="busy(); navigator.pushView(VapecCoachingView);">
+	</s:Button>
 </s:View>

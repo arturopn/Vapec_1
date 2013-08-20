@@ -46,6 +46,7 @@
 			}
 		]]>
 	</fx:Script>
+	
 	<s:Image source="assets/images/bienvenido.png" x="51" y="61"/>
 	<s:Button  id="inicio" styleName="boton" icon="assets/icons/iniciodeldia.png" x="174" y="173" click="navigator.pushView(VapecInicioView); busy(); glow(this.inicio)"/>	
 	<s:Image source="assets/icons/coaching.png" x="573" y="203"/>
