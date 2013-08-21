@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" title="HomeView" backKeyPressed="busy()">
+		xmlns:s="library://ns.adobe.com/flex/spark" title="HomeView" backKeyPressed="busy()"
+		addedToStage="addedToStage()" creationComplete="checkOrientation()"
+		>
+
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -14,6 +17,16 @@
 	<fx:Script>
 		<![CDATA[
 			import com.pepsico.vapec.webservices.WebserviceManager;
+			
+			import mx.events.FlexEvent;
+			[Bindable]
+			private var imagen="";
+			
+			[Bindable]
+			private var width1="";
+			
+			[Bindable]
+			private var height1="";
 			
 		      //consoleLabel.text;
 			
@@ -37,11 +50,40 @@
 			{
 				{bi.visible = !bi.visible};	
 			}
+			
+			// FUNCTION THAT RUNS addToStage
+			// EVENT LISTENER IS SETUP HERE
+			
+			public function addedToStage(event:Event = null):void
+			{
+				stage.addEventListener(StageOrientationEvent.ORIENTATION_CHANGE, checkOrientation);
+			}
+			
+			// FUNCTION THAT SWITCHES VIEW STATES
+			// CALLED FROM addToStage & creationComplete
+			
+			private function checkOrientation(event:StageOrientationEvent = null):void
+			{
+				if (stage == null)
+				{
+					width  = Capabilities.screenResolutionX;
+					height = Capabilities.screenResolutionY;
+				}
+				else
+				{
+					width = stage.stageWidth;
+					height = stage.stageHeight;
+				}
+				
+				if (width > height) { imagen ="assets/images/loginbg.png"; width1="900"; height1="1443"}
+				else { imagen ="assets/images/login_horizontal.png"; height1="900"; width1="1443"}
+			}
+			
 		]]>
 	</fx:Script>
 	
-	<s:BitmapImage id="home" x="0" y="0" width="900" height="1443"
-			 source="@Embed('assets/images/loginbg.png')"/>
+	<s:Image id="home" x="0" y="0" width="{width1}" height="{height1}"
+			 source="{imagen}"/>
 	<s:Image source="assets/icons/prueba1_paraweb.png">
 	</s:Image>
 	<s:Label id="consoleLabel" x="276" y="11" />
@@ -49,6 +91,6 @@
 	<s:TextInput enabled="true" text="" x="400" y="930"/>
 	<s:Label text="Contraseña:" x="236" y="1050"/>
 	<s:TextInput enabled="true" text="" x="400" y="1030"/>
-	<s:Button x="161" styleName="boton" y="145" width="231" label="ENTRAR" color="blue" click="navigator.pushView(S2135Competencias); busy()"/>
+	<s:Button x="161" styleName="boton" y="145" width="231" label="ENTRAR" color="blue" click="navigator.pushView(s2118DetalleDistribucionProductos); busy()"/>
 	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
 </s:View>

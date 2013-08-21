@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" title="VapecMenuView" backKeyPressed="busy()">
+		xmlns:s="library://ns.adobe.com/flex/spark" title="VapecMenuView" backKeyPressed="busy()"
+		addedToStage="addedToStage()" creationComplete="checkOrientation()"
+		>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -17,6 +19,12 @@
 	<fx:Script>
 		<![CDATA[
 			import com.pepsico.vapec.webservices.WebserviceManager;
+			
+			[Bindable]
+			private var width1="";
+			
+			[Bindable]
+			private var height1="";
 			
 		      //consoleLabel.text;
 			
@@ -41,6 +49,32 @@
 				{bi.visible = !bi.visible}
 			}
 			
+			// FUNCTION THAT RUNS addToStage
+			// EVENT LISTENER IS SETUP HERE
+			
+			public function addedToStage(event:Event = null):void
+			{
+				stage.addEventListener(StageOrientationEvent.ORIENTATION_CHANGE, checkOrientation);
+			}
+			
+			// FUNCTION THAT SWITCHES VIEW STATES
+			// CALLED FROM addToStage & creationComplete
+			
+			private function checkOrientation(event:StageOrientationEvent = null):void
+			{
+				if (stage == null)
+				{
+					width  = Capabilities.screenResolutionX;
+					height = Capabilities.screenResolutionY;
+				}
+				else
+				{
+					width = stage.stageWidth;
+					height = stage.stageHeight;
+				}
+				if (width > height) { width1="900"; height1="1443"}
+				else { height1="900"; width1="1443"}
+			}
 		]]>
 	</fx:Script>
 	<s:ComboBox x="73" y="110" width="416" contentBackgroundColor="#ffffff">
@@ -68,7 +102,7 @@
 		
 	</s:Image>
 	
-	<s:DataGrid x="0" y="200" width="900" styleName="tabla" fontSize="40" height="368" selectionColor="0xFF7F00" > 
+	<s:DataGrid x="0" y="200" width="{width1}" styleName="tabla" fontSize="40" height="368" selectionColor="0xFF7F00" > 
 		<s:columns> 
 			<s:ArrayList>
 				<!-- Define columns propeties here -->
@@ -104,7 +138,7 @@
 		</s:dataProvider>
 	</s:DataGrid>
 	
-	<s:DataGrid x="0" y="720" width="900" styleName="tabla" fontSize="40" height="609" selectionColor="0xFF7F00" > 
+	<s:DataGrid x="0" y="720" width="{width1}" styleName="tabla" fontSize="40" height="609" selectionColor="0xFF7F00" > 
 		<s:columns> 
 			<s:ArrayList>
 				<!-- Define columns propeties here -->
