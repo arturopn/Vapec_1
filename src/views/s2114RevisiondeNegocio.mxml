@@ -46,24 +46,35 @@
 		]]>
 	</fx:Script>
 
-	<s:Image x="31" y="44" source="assets/images/supervisor_comp.png">
-		
-	</s:Image>
-	<s:ComboBox x="464" y="48" width="416" contentBackgroundColor="#ffffff">
-		
-	</s:ComboBox>
-	<s:Image x="411" y="42" source="assets/images/lupa.png">
-		
-	</s:Image>
-	<s:Label fontFamily="Futura" fontSize="30" color="#6BA6F1" left="333" top="111">
-		Cliente: El Sol Para Todos
-		Día Programado: S,R
-		Frecuencia: W
-		Nivel de Cliente: A
+<s:Group x="50" y="100">
+	<s:Label fontFamily="Futura" fontSize="30" color="#6BA6F1" >
+		Cliente: </s:Label>
+	<s:Label fontFamily="Futura" fontSize="30" color="#A9A9A9" x="260" >
+		El Sol Para Todos</s:Label>
+	<s:Label fontFamily="Futura" fontSize="30" color="#6BA6F1" y="50">
+		Día Programado:
 	</s:Label>
-	<s:Image x="2" y="396" source="assets/images/revisiondelcliente.png">
-		
-	</s:Image>
+	<s:Label fontFamily="Futura" fontSize="30" color="#A9A9A9" y="50" x="260" >
+		S,R</s:Label>
+		<s:Label fontFamily="Futura" fontSize="30" color="#6BA6F1" y="100">
+			Frecuencia: 	
+		</s:Label> 
+	<s:Label fontFamily="Futura" fontSize="30" color="#A9A9A9" y="100" x="260" >
+		W</s:Label>
+		<s:Label fontFamily="Futura" fontSize="30" color="#6BA6F1" y="150" >
+			Nivel de Cliente: 
+		</s:Label> 
+	<s:Label fontFamily="Futura" fontSize="30" color="#A9A9A9" y="150" x="260" >
+		A</s:Label>
+	
+</s:Group>
+
+	<s:SkinnableContainer styleName="title" textAlign="center">
+		<s:Label color="#FFFFFF" verticalAlign="middle">
+			2114-Revision de negocio
+		</s:Label>
+	</s:SkinnableContainer>
+	
 	<s:Label x="-15" y="436" fontSize="40">
 		Exibidores
 	</s:Label>
@@ -76,10 +87,7 @@
 	<s:Image x="286" y="464" source="assets/revision/icono2.png">
 		
 	</s:Image>
-	<s:Image x="732" y="345" source="assets/revision/alertas.png">
-		
-	</s:Image>
-	
+
 	<s:DataGrid x="0" y="700" width="900" styleName="tabla" fontSize="40" height="668" selectionColor="0xFF7F00" > 
 		<s:dataProvider>
 			<s:ArrayList> 

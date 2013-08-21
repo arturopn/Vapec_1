@@ -157,7 +157,7 @@
 	<s:Image x="42" y="1192" width="96" height="140" source="assets/coaching/plan.png"/>
 	<s:Image x="178" y="1201" width="117" height="132" source="assets/coaching/status.png" />
 	<s:Button id="cliente" styleName="boton" x="321" y="1204" width="118" height="130" icon="assets/coaching/cliente.png" click="busy(); glow(this.cliente); navigator.pushView(VapecInformacionClienteView);"/>
-	<s:Button id="negocios"  styleName="boton" x="477" y="1202" width="109" height="130" icon="assets/coaching/rev.negocios.png" click="navigator.pushView(VapecRevisionNegociosView); busy(); glow(this.negocios)"/>
+	<s:Button id="negocios"  styleName="boton" x="477" y="1202" width="109" height="130" icon="assets/coaching/rev.negocios.png" click="navigator.pushView(s2114RevisiondeNegocio); busy(); glow(this.negocios)"/>
 	<s:Image x="630" y="1210" width="100" height="120" source="assets/coaching/distribucion.png"/>
 	<s:Image x="756" y="1210" width="104" height="122" source="assets/coaching/ejecucion.png"/>
 	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
