@@ -4,13 +4,7 @@
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	<fx:Style>
-		@namespace s "library://ns.adobe.com/flex/spark";
-		.boton{
-			skinClass:ClassReference("skins.botonSkin");
-			/*chromeColor: #FFFFFF;*/
-		}
-	</fx:Style>
+	
 	<fx:Script>
 		<![CDATA[
 			import com.google.zxing.BarcodeFormat;
@@ -45,8 +39,22 @@
 			private var cameraStarted:Boolean = false;
 			
 			
+			import flash.events.TimerEvent;
+			import flash.utils.Timer;
+			
+			import mx.events.FlexEvent;
+			
+			import spark.events.ViewNavigatorEvent;
+			
+			protected var camera:Camera;
+			private var videoDisplay:Video=new Video(360, 360);
+			private var qrReader:QRCodeReader;
+			private var bar:DataMatrixReader;
+			private var bmd:BitmapData;
+			private var cameraStarted:Boolean = false;
+			
+			
 		      //consoleLabel.text;
-			public var user_name:String ="DD";
 			
 			protected function button_clickHandler(event:MouseEvent):void
 			{
@@ -141,6 +149,7 @@
 				return ht;
 			}
 			
+			
 		protected function links():void
 		{
 				{	bi.visible = !bi.visible};
@@ -175,7 +184,6 @@
 			
 		]]>
 	</fx:Script>
-<<<<<<< HEAD
 	
 	<!--<s:navigationContent>
 		<s:Button id="ok1" 
@@ -183,10 +191,7 @@
 				  icon="assets/images/ok.png" x="615" y="437" click="trace();navigator.pushView(VapecMenuOnView,data);" >
 		</s:Button>
 	</s:navigationContent>-->
-	
-=======
 
->>>>>>> 52c7d0df6ff6e2e6e77a5f61224c1dcd10ba82cd
     <s:Image x="24" y="21" source="assets/images/supervisor_comp.png">		
 	</s:Image>
 	<s:Rect left="341" right="2" top="22" bottom="1250"

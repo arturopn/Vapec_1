@@ -54,7 +54,6 @@
 			
 		]]>
 	</fx:Script>
-<<<<<<< HEAD
 	
 	<!--<s:navigationContent>
 		<s:Button id="ok1" 
@@ -68,9 +67,7 @@
 		</s:Label>
 	</s:titleContent>
 	
-=======
 <s:Group>
->>>>>>> 52c7d0df6ff6e2e6e77a5f61224c1dcd10ba82cd
 	<s:Label x="-40" y="8" fontSize="30">
 		Rutas:
 	</s:Label>
