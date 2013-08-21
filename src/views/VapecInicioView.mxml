@@ -13,7 +13,37 @@
 	</fx:Style>
 	<fx:Script>
 		<![CDATA[
+			import com.google.zxing.BarcodeFormat;
+			import com.google.zxing.BinaryBitmap;
+			import com.google.zxing.BufferedImageLuminanceSource;
+			import com.google.zxing.DecodeHintType;
+			import com.google.zxing.Result;
+			import com.google.zxing.client.result.ParsedResult;
+			import com.google.zxing.client.result.ResultParser;
+			import com.google.zxing.common.BitMatrix;
+			import com.google.zxing.common.ByteMatrix;
+			import com.google.zxing.common.GlobalHistogramBinarizer;
+			import com.google.zxing.common.flexdatatypes.HashTable;
+			import com.google.zxing.datamatrix.DataMatrixReader;
+			import com.google.zxing.pdf417.encoder.BarcodeMatrix;
+			import com.google.zxing.qrcode.QRCodeReader;
+			import com.google.zxing.qrcode.detector.Detector;
 			import com.pepsico.vapec.webservices.WebserviceManager;
+			
+			import flash.events.TimerEvent;
+			import flash.utils.Timer;
+			
+			import mx.events.FlexEvent;
+			
+			import spark.events.ViewNavigatorEvent;
+			
+			protected var camera:Camera;
+			private var videoDisplay:Video=new Video(360, 360);
+			private var qrReader:QRCodeReader;
+			private var bar:DataMatrixReader;
+			private var bmd:BitmapData;
+			private var cameraStarted:Boolean = false;
+			
 			
 		      //consoleLabel.text;
 			
@@ -31,6 +61,83 @@
 				}
 				
 		
+			}
+			
+		protected function buttonCamara_clickHandler(event:MouseEvent):void
+		{
+			if (!cameraStarted) {
+				if (Camera.isSupported)
+				{
+					camera=Camera.getCamera();
+					camera.setMode(360, 360, 24);
+					
+					videoDisplay.x = 360;
+					sv.addChild(videoDisplay);
+					
+					videoDisplay.attachCamera(camera);
+					videoDisplay.rotation=90;
+					qrReader=new QRCodeReader;
+					bar = new DataMatrixReader;
+					btn.label = "Scan Now";
+					lbl.text = "";
+					cameraStarted = true;
+				}
+				else {
+					lbl.text = "no camera found";
+				}
+			}
+			else {
+				decodeSnapshot();
+			}
+		}
+			
+			public function decodeSnapshot():void
+			{
+				lbl.text="checking...";
+				bmd=new BitmapData(300, 300);
+				bmd.draw(videoDisplay, null, null, null, null, true);
+				videoDisplay.cacheAsBitmap=true;
+				videoDisplay.cacheAsBitmapMatrix=new Matrix;
+				decodeBitmapData(bmd, 300, 300);
+				bmd.dispose();
+				bmd=null;
+				System.gc();
+			}
+			
+			public function decodeBitmapData(bmpd:BitmapData, width:int, height:int):void
+			{
+				var lsource:BufferedImageLuminanceSource=new BufferedImageLuminanceSource(bmpd);
+				var bitmap:BinaryBitmap=new BinaryBitmap(new GlobalHistogramBinarizer(lsource));
+				
+				var ht:HashTable=null;
+				ht=this.getAllHints();
+				
+				var res:Result=null;
+				try {
+					res=bar.decode(bitmap, ht);
+					//res=qrReader.decode(bitmap, ht);
+				}
+				catch (event:Error) {
+				}
+				
+				if (res == null) {
+					videoDisplay.clear();
+					lbl.text="nothing decoded";
+				}
+				else {
+					var parsedResult:ParsedResult=ResultParser.parseResult(res);
+					lbl.text=parsedResult.getDisplayResult();
+					sv.removeChild(videoDisplay);
+					cameraStarted = false;
+					btn.label = "Start Camera";
+				}
+			}
+			
+			public function getAllHints():HashTable
+			{
+				var ht:HashTable=new HashTable;
+				ht.Add(DecodeHintType.POSSIBLE_FORMATS, BarcodeFormat.QR_CODE);
+				return ht;
 			}
 			
 		protected function links():void
@@ -55,6 +162,7 @@
 			
 		]]>
 	</fx:Script>
+
     <s:Image x="24" y="21" source="assets/images/supervisor_comp.png">		
 	</s:Image>
 	<s:Rect left="341" right="2" top="22" bottom="1250"
@@ -84,18 +192,13 @@
 		Estado Civil: Casado
 		Edad: 26 años
 	</s:Label>
-	<s:Image x="0" y="326" source="assets/images/barra.png">
-		
-	</s:Image>
+
 	<s:Image x="40" y="415" source="assets/images/codigo.png">
 		
 	</s:Image>
-	<s:TextInput x="40" y="482" text="123...">
+	<s:TextInput id="lbl" x="40" y="482" text="">
 		
 	</s:TextInput>
-	<s:Image source="assets/images/lupa.png" x="493" y="487">
-		
-	</s:Image>
 	
 	<s:Image source="assets/images/hora_inicio.png" x="0" y="559">
 		
@@ -133,18 +236,19 @@
 		</s:dataProvider>
 	</s:ComboBox>
 	
-	<s:Image source="assets/images/lupa.png" x="493" y="873" >
-		
-	</s:Image>
+	<s:Button id="btn" label="Start Camera" width="193" x="495" y="464" height="81" click="buttonCamara_clickHandler(event)"/>
+
 	
 	<s:TextArea x="50" y="1000" width="800" height="251" >
 		
 	</s:TextArea>
 	
-	<s:Button id="ok" styleName="boton" icon="assets/images/ok.png" x="615" y="437" click="links(); glow(this.ok);" >
+	<s:Button id="ok" styleName="boton" icon="assets/images/ok.png" x="776" y="1264" click="links(); glow(this.ok);" >
 	</s:Button>
 	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
-	
+	<s:VGroup width="100%" horizontalAlign="center" id="vg">
+		<s:SpriteVisualElement id="sv" width="360" height="400"/>
+	</s:VGroup>
 
 	 
 </s:View>
