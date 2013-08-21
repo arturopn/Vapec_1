@@ -54,15 +54,32 @@
 			
 		]]>
 	</fx:Script>
+<<<<<<< HEAD
+	
+	<!--<s:navigationContent>
+		<s:Button id="ok1" 
+				  styleName="boton" 
+				  icon="assets/images/ok.png" x="615" y="437" click="trace();navigator.pushView(VapecMenuOnView,data);" >
+		</s:Button>
+	</s:navigationContent>-->
+	
+	<s:titleContent>
+		<s:Label id="user_lbl" text="{data.user_name}">
+		</s:Label>
+	</s:titleContent>
+	
+=======
+<s:Group>
+>>>>>>> 52c7d0df6ff6e2e6e77a5f61224c1dcd10ba82cd
 	<s:Label x="-40" y="8" fontSize="30">
 		Rutas:
 	</s:Label>
 	<s:ComboBox x="158" y="26" width="650">
 		
 	</s:ComboBox>
-	<s:Image x="817" y="15" source="assets/images/lupa.png">
-		
-	</s:Image>
+</s:Group>	
+
+
 	
 	<s:Label x="-80" y="68" fontSize="30">
 		Cod/Nip:
@@ -70,9 +87,6 @@
 	<s:ComboBox x="158" y="86" width="650">
 		
 	</s:ComboBox>
-	<s:Image x="817" y="75" source="assets/images/lupa.png">
-		
-	</s:Image>
 	
 	<s:Label x="-80" y="118" fontSize="30">
 		Nombre:
@@ -80,12 +94,7 @@
 	<s:ComboBox x="158" y="146" width="650">
 		
 	</s:ComboBox>
-	<s:Image x="817" y="135" source="assets/images/lupa.png">
-		
-	</s:Image>
-	<s:Image x="819" y="196" source="assets/images/lupa.png">
-		
-	</s:Image>
+
 	<s:Label x="-80" y="178" fontSize="30">
 		Semana:
 	</s:Label>
@@ -99,9 +108,7 @@
 		
 	</s:ComboBox>
 	
-	<s:Image x="0" y="270" source="assets/images/barra.png">
-		
-	</s:Image>
+
 	
 	<s:DataGrid x="0" y="342" width="900" styleName="tabla" fontSize="40" height="800" > 
 		<s:dataProvider>

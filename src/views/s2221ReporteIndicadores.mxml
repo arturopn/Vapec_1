@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:fl="http://www.flextras.com/mxml"
+		xmlns:s="library://ns.adobe.com/flex/spark" title="2221 - Reporte Indicadores"
+		>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import spark.events.IndexChangeEvent;
+			private var dgArray1:Array;
+			/*private var dgArray1:Array = [ 
+				{Artist:'SAB', Album:'SABRITAS', Price:11.99}, 
+				{Artist:'SABRITAS', Album:'SAB', Price:11.99}];*/
+			/*private var dgArray2:Array = [ 
+				{Artist:'SABRITAS', Album:'SAB', Price:11.99}, 
+				{Artist:'SAB', Album:'SABRITAS', Price:11.99}];*/
+			
+			[Bindable] 
+			public var initDG:ArrayCollection; 
+			
+			// Initialize initDG variable from the Array. 
+			/*public function initData(event:MouseEvent):void
+			{
+				if ( ruta_ddl.selectedItem != null && event.target == search_route )
+				{
+					var dgArray1:Array = [ 
+						{Artist:'SAB'+ruta_ddl.selectedItem.Artist, Album:'SABRITAS', Price:11.99}, 
+						{Artist:'SABRITAS'+ruta_ddl.selectedItem.Artist, Album:'SAB', Price:11.99}];
+					
+					initDG = new ArrayCollection(dgArray1);
+				}
+				else if ( mostrar_ddl.selectedItem != null && event.target == search_filter )
+				{
+					initDG = new ArrayCollection(dgArray2);
+				} 
+			}*/
+			
+			protected function initData(event:IndexChangeEvent):void
+			{
+				// TODO Auto-generated method stub
+				if ( ruta_ddl.selectedItem != null && event.target == ruta_ddl )
+				{
+					dgArray1 = [ 
+						{Artist:'RUTA-'+ruta_ddl.selectedItem, Album:'RUTA-'+ruta_ddl.selectedItem.substr(0,5), Price:11.99}, 
+						{Artist:'RUTA-'+ruta_ddl.selectedItem, Album:'RUTA-'+ruta_ddl.selectedItem.substr(0,5), Price:11.99}];
+					
+					initDG = new ArrayCollection(dgArray1);
+				}
+				else if ( mostrar_ddl.selectedItem != null && event.target == mostrar_ddl )
+				{
+					dgArray1 = [ 
+						{Artist:'MOSTRAR-'+mostrar_ddl.selectedItem, Album:'MOSTRAR-'+mostrar_ddl.selectedItem.substr(0,5), Price:11.99}, 
+						{Artist:'MOSTRAR-'+mostrar_ddl.selectedItem, Album:'MOSTRAR-'+mostrar_ddl.selectedItem.substr(0,5), Price:11.99}];
+					initDG = new ArrayCollection(dgArray1);
+				} 
+			}
+			
+		]]>
+	</fx:Script>
+	<!--<s:Group height="100%" width="100%">-->
+	<s:VGroup width="100%">
+		<s:Label styleName="title_label" width="100%" alpha=".4" text="2221 - Reporte Indicadores">
+		</s:Label>
+	</s:VGroup>
+	<s:Group width="100%">
+		<s:HGroup y="150" x="150" width="100%">
+			<s:Label text="Tipo de Ruta:"></s:Label>
+			<s:Spacer width="50" />
+			<!--<s:Button id="search_route" icon="assets/images/lupa.png" click="initData(event)" />-->
+			<fl:DropDownList change="initData(event)"
+				id="ruta_ddl"
+				width="340" 
+				> 
+				<s:ArrayCollection>
+					<fx:String>SAB-SABRITAS</fx:String>
+					<fx:String>Alaska</fx:String>
+					<fx:String>Arizona</fx:String>
+					<fx:String>Arkansas</fx:String>
+					<fx:String>California</fx:String>
+					<fx:String>Alabama</fx:String>
+					<fx:String>Alaska</fx:String>
+					<fx:String>Arizona</fx:String>
+					<fx:String>Arkansas</fx:String>
+					<fx:String>California</fx:String>
+					<fx:String>Alabama</fx:String>
+					<fx:String>Alaska</fx:String>
+					<fx:String>Arizona</fx:String>
+					<fx:String>Arkansas</fx:String>
+					<fx:String>California</fx:String>
+					<fx:String>Alabama</fx:String>
+					<fx:String>Alaska</fx:String>
+					<fx:String>Arizona</fx:String>
+					<fx:String>Arkansas</fx:String>
+					<fx:String>California</fx:String>
+				</s:ArrayCollection>
+			</fl:DropDownList>
+		</s:HGroup>
+		<s:Spacer height="150" />
+		<s:HGroup y="250" x="150" width="100%">
+			<s:Label text="Mostrar:"></s:Label>
+			<s:Spacer width="100" />
+			<!--<s:Button id="search_filter" icon="assets/images/lupa.png" click="initData(event)" />-->
+			<fl:DropDownList change="initData(event)"
+				id="mostrar_ddl"
+				width="340" 
+				> 
+				<s:ArrayCollection>
+					<fx:String>TODOS</fx:String>
+					<fx:String>Alaska</fx:String>
+					<fx:String>Arizona</fx:String>
+					<fx:String>Arkansas</fx:String>
+					<fx:String>California</fx:String>
+					<fx:String>Alabama</fx:String>
+					<fx:String>Alaska</fx:String>
+					<fx:String>Arizona</fx:String>
+					<fx:String>Arkansas</fx:String>
+					<fx:String>California</fx:String>
+					<fx:String>Alabama</fx:String>
+					<fx:String>Alaska</fx:String>
+					<fx:String>Arizona</fx:String>
+					<fx:String>Arkansas</fx:String>
+					<fx:String>California</fx:String>
+					<fx:String>Alabama</fx:String>
+					<fx:String>Alaska</fx:String>
+					<fx:String>Arizona</fx:String>
+					<fx:String>Arkansas</fx:String>
+					<fx:String>California</fx:String>
+				</s:ArrayCollection>
+			</fl:DropDownList>
+		</s:HGroup>
+		<s:Spacer height="150" />
+		<s:HGroup y="350" x="150" width="100%">
+			<s:VGroup width="100%">
+				<s:Label text="Fecha Referencia:"></s:Label>
+			</s:VGroup>
+		</s:HGroup>
+		<s:DataGrid y="450" id="myGrid" width="100%" 
+					minHeight="{stage.height}"
+					dataProvider="{initDG}" initialize="myGrid.grid.rowBackground = myGrid.alternatingRowColorsBackground"/>
+	</s:Group>
+	
+</s:View>

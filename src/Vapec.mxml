@@ -43,9 +43,15 @@
 			import mx.logging.targets.*;
 			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
-			  
+			
+			import views.*;
+			
 			use namespace zip_internal;
 			// variable declarations ------------------------------------
+			
+			[Bindable]
+			public var d:Object = new Object();
+			//public var user_name:String = "dkddjjd";
 			
 			private var file:File = File.userDirectory.resolvePath(ConfigGlobal.APP_NATIVE_PATH + "\\" + ConfigGlobal.WS_ZIP_FILENAME);
 			
@@ -208,15 +214,31 @@
 			
 			
 			
+			protected function ok_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				d = navigator.activeView.data;
+				navigator.pushView(VapecMenuOnView,d);
+			}
+			
 		]]>
 	</fx:Script>
-
+	
+	<s:navigationContent>
+		<s:Button id="ok" 
+				  styleName="boton" 
+				  icon="assets/images/ok.png" x="615" y="437" click="ok_clickHandler(event)" >
+		</s:Button>
+	</s:navigationContent>
+	
 	<s:titleContent>
 		<s:VGroup id="masterVGroup" width="100%">
-		<s:HGroup id="masterHGroup" gap="3" width="100%" verticalAlign="middle" horizontalAlign="center">
-		<s:Image source="assets/icons/vapec_logo.png" horizontalAlign="center"/>
-		</s:HGroup>
-</s:VGroup>
+			<s:HGroup id="masterHGroup" gap="3" width="100%" verticalAlign="middle" horizontalAlign="center">
+				<s:Label id="user_lbl" text="{( d ? d.user_name : '' )}">
+				</s:Label>
+				<s:Image source="assets/icons/vapec_logo.png" horizontalAlign="center"/>
+			</s:HGroup>
+		</s:VGroup>
 	</s:titleContent>
 
 </s:ViewNavigatorApplication>

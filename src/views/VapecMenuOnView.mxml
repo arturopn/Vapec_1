@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" title="VapecMenuView" backKeyPressed="busy()">
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		title="VapecMenuView" 
+		creationComplete="validateData()" backKeyPressed="busy()">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -12,7 +14,38 @@
 		<![CDATA[
 			import com.pepsico.vapec.webservices.WebserviceManager;
 			
+			//Icons
+			[Bindable] private var coaching_img:String = "";
+			[Bindable] private var agenda_img:String = "";
+			[Bindable] private var reportes_img:String = "";
+			[Bindable] private var findeldia_img:String = "";
+			[Bindable] private var comunicar_img:String = "";
+			
+			/*[Bindable()] [Embed('assets/icons/coaching.png')] public var coaching_off:Class;
+			[Bindable()] [Embed('assets/menu/coachingon.png')] public var coaching_on:Class;
+			[Bindable()] [Embed('assets/icons/agendaoff.png')] public var agenda_off:Class;
+			[Bindable()] [Embed('assets/menu/agendaon.png')] public var agenda_on:Class;*/
 		      //consoleLabel.text;
+			
+			protected function validateData():void
+			{
+				if ( data != null )
+				{
+					coaching_img = 'assets/menu/coachingon.png';
+					agenda_img = 'assets/menu/agendaon.png';
+					reportes_img = "assets/menu/reporteson.png";
+					findeldia_img = "assets/menu/findeldiaon.png";
+					comunicar_img = "assets/menu/comunicaron.png";
+				}
+				else
+				{
+					coaching_img = 'assets/icons/coaching.png';
+					agenda_img = 'assets/icons/agendaoff.png';
+					reportes_img = "assets/icons/agendaoff.png";
+					findeldia_img = "assets/icons/findeldiaoff.png";
+					comunicar_img = "assets/icons/comunicaroff.png";
+				}
+			}
 			
 			protected function button_clickHandler(event:MouseEvent):void
 			{
@@ -29,6 +62,13 @@
 				
 		
 			}
+			
+			protected function startDay():void
+			{
+				navigator.pushView(VapecInicioView);
+				busy();
+				glow(this.inicio);
+			}
 		
 			protected function busy():void
 			{
@@ -43,17 +83,49 @@
 				
 			}
 			
-			
+			private function goToView(event:MouseEvent):void
+			{
+				if ( !data )
+				{
+					return;
+				}
+				
+				if (event.target == coaching)
+				{
+					navigator.pushView(VapecCoachingView,data);
+				}
+				busy();
+				glow(this.coaching);
+			}
 			
 		]]>
 	</fx:Script>
+	
+	<!--<s:navigationContent>
+		<s:Button id="ok" 
+		styleName="boton" 
+		icon="assets/images/ok.png" x="615" y="437" click="trace();navigator.pushView(VapecMenuOnView,data);" >
+		</s:Button>
+	</s:navigationContent>-->
+	
+	<s:titleContent>
+		<s:Label id="user_lbl" text="{data.user_name}">
+		</s:Label>
+		<s:VGroup id="masterVGroup" width="100%">
+			<s:HGroup id="masterHGroup" gap="3" width="100%" verticalAlign="middle" horizontalAlign="center">
+				
+				<s:Image source="assets/icons/vapec_logo.png" horizontalAlign="center"/>
+			</s:HGroup>
+		</s:VGroup>
+	</s:titleContent>
+	
 	<s:Image source="assets/images/bienvenido.png" x="50" y="60" />
-	<s:Button  id="inicio" styleName="boton"  icon="assets/icons/iniciodeldia.png" x="174" y="173" click="navigator.pushView(VapecInicioView); busy(); glow(this.inicio)"/>	
-	<s:Button id="coaching" styleName="boton" icon="assets/menu/coachingon.png"  x="573" y="203" click="navigator.pushView(VapecCoachingView); busy(); glow(this.coaching)" />
-	<s:Image source="assets/menu/agendaon.png" x="174" y="626"/>
-	<s:Image source="assets/menu/reporteson.png" x="587" y="626"/>
-	<s:Image source="assets/menu/findeldiaon.png" x="180" y="1000"/>
-	<s:Image source="assets/menu/comunicaron.png" x="601" y="968"/>
+	<s:Button  id="inicio"  icon="assets/icons/iniciodeldia.png" x="174" y="173" click="startDay()"/>	
+	<s:Button id="coaching" icon="{ coaching_img }" x="573" y="203" click="goToView(event)" />
+	<s:Button id="agenda" icon="{ agenda_img }" x="174" y="626" click="goToView(event)"/>
+	<s:Button id="reportes" icon="{ agenda_img }"  x="587" y="626" click="goToView(event)"/>
+	<s:Button id="findeldia" icon="{ findeldia_img }"  x="180" y="1000" click="goToView(event)"/>
+	<s:Button id="comunicar" icon="{ comunicar_img }" x="601" y="968" click="goToView(event)"/>
 	
 	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
 

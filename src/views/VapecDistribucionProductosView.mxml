@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="VapecMenuView" backKeyPressed="busy()">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		.tabla
+		{
+			alternatingRowColors:#FFFFFF,#6BA6F1;
+			borderVisible:"false";
+			fontSize:21;
+			lineHeight:"120%";
+			rollOverColor:"#FF7F00";
+			selectionColor:"0xFF7F00";
+		}
+		.boton{
+			chromeColor: #FFFFFF;
+		}
+	</fx:Style>
+	<fx:Script>
+		<![CDATA[
+			import com.pepsico.vapec.webservices.WebserviceManager;
+			
+		      //consoleLabel.text;
+			
+			protected function button_clickHandler(event:MouseEvent):void
+			{
+				var wsMgr:WebserviceManager = new WebserviceManager();
+				
+				try
+				{
+					wsMgr.importZip();
+				}
+				catch(e:Error)
+				{
+					trace(e.getStackTrace());
+				}
+				
+		
+			}	
+			
+			protected function busy():void
+			{
+				{bi.visible = !bi.visible}
+			}
+			
+		]]>
+	</fx:Script>
+
+	<s:Image x="15" y="21" source="assets/images/barra.png">
+		
+	</s:Image>
+
+
+
+
+	
+	<s:DataGrid x="1" y="84" width="900" styleName="tabla" fontSize="40" height="722" selectionColor="0xFF7F00" > 
+<s:columns>
+	<s:ArrayList>
+	<s:GridColumn dataField="Clientes"></s:GridColumn>
+	<s:GridColumn dataField="S3B8"></s:GridColumn>
+	<s:GridColumn dataField="S2B8"></s:GridColumn>
+	<s:GridColumn dataField="S2B9"></s:GridColumn>
+	
+		
+	</s:ArrayList>
+</s:columns>
+		<s:dataProvider>
+			<s:ArrayList> 
+				<fx:Object> 
+					<fx:Clientes>Abarrotes 1</fx:Clientes> 
+				</fx:Object> 
+				<fx:Object> 
+					<fx:Clientes>Abarrotes 2</fx:Clientes> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Clientes>Abarrotes 2</fx:Clientes> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Clientes>Abarrotes 4</fx:Clientes> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Clientes>Abarrotes 5</fx:Clientes> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Clientes>Abarrotes 6</fx:Clientes> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Clientes>Abarrotes 7</fx:Clientes> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Clientes>Abarrotes 8</fx:Clientes> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Clientes>Abarrotes 9</fx:Clientes> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Clientes>Abarrotes 10</fx:Clientes> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Clientes>Abarrotes 11</fx:Clientes> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Clientes>Abarrotes 12</fx:Clientes> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Clientes>Abarrotes 13</fx:Clientes> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Clientes>Abarrotes 14</fx:Clientes> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Clientes>Abarrotes 15</fx:Clientes> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Clientes>Abarrotes 16</fx:Clientes> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Clientes>Abarrotes 17</fx:Clientes> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Clientes>Abarrotes 18</fx:Clientes> 
+				</fx:Object>
+			</s:ArrayList> 
+		</s:dataProvider>
+	</s:DataGrid> 
+	
+	
+	<s:Image x="381" y="837" source="assets/images/lupa.png">
+		
+	</s:Image>
+	<s:ComboBox x="434" y="843" width="416" contentBackgroundColor="#ffffff">
+		
+	</s:ComboBox>
+	
+	<s:TextArea x="50" y="936" width="800" height="251" >
+		
+	</s:TextArea>
+	
+	<s:Button id="editar" styleName="boton" icon="assets/icons/editar.png" x="47" y="1201" click="busy(); navigator.pushView(VapecEdicionClienteView);">
+	</s:Button>
+	<s:Button id="guardar" styleName="boton" x="193" y="1202" width="118" height="130" icon="assets/icons/guardar.png" click="busy(); navigator.pushView(VapecAltaClienteView);"/>
+	
+	
+	<s:Button id="ok" styleName="boton" icon="assets/images/ok.png" x="776" y="1201" click="busy(); navigator.pushView(VapecCoachingView);">
+	</s:Button>
+	
+	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
+
+</s:View>
