@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="VapecMenuView" backKeyPressed="busy()">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		.tabla
+		{
+			alternatingRowColors:#FFFFFF,#6BA6F1;
+			borderVisible:"false";
+			fontSize:21;
+			lineHeight:"120%";
+		}
+	</fx:Style>
+	<fx:Script>
+		<![CDATA[
+			import com.pepsico.vapec.webservices.WebserviceManager;
+			
+		      //consoleLabel.text;
+			
+			protected function button_clickHandler(event:MouseEvent):void
+			{
+				var wsMgr:WebserviceManager = new WebserviceManager();
+				
+				try
+				{
+					wsMgr.importZip();
+				}
+				catch(e:Error)
+				{
+					trace(e.getStackTrace());
+				}
+				
+		
+			}	
+			
+			protected function busy():void
+			{
+				{bi.visible = !bi.visible}
+			}
+			
+		]]>
+	</fx:Script>
+	<s:ComboBox x="73" y="110" width="416" contentBackgroundColor="#ffffff">
+		
+	</s:ComboBox>
+	<s:Image x="20" y="104" source="assets/images/lupa.png">
+		
+	</s:Image>
+	<s:Image source="assets/revision/alertas.png" x="732" y="150">
+		
+	</s:Image>
+	<s:Image x="0" y="20" source="assets/images/revisiondenegocios.png">
+		
+	</s:Image>
+	
+    <s:Image source="assets/icons/editar.png" x="50" y="600">
+		
+	</s:Image>
+	
+	<s:Image source="assets/icons/guardar.png" x="170" y="610">
+		
+	</s:Image>
+	
+	<s:Image source="assets/images/ok.png" x="737" y="620">
+		
+	</s:Image>
+	
+	<s:DataGrid x="0" y="200" width="900" styleName="tabla" fontSize="40" height="368" selectionColor="0xFF7F00" > 
+		<s:columns> 
+			<s:ArrayList>
+				<!-- Define columns propeties here -->
+				<s:GridColumn dataField="Indicador"/> 
+				<s:GridColumn dataField="CIA"/> 
+				<s:GridColumn dataField=""/>
+			</s:ArrayList>
+		</s:columns>
+		
+		<s:dataProvider>
+			<s:ArrayList> 
+				<fx:Object> 
+					<fx:Indicador>Inversion Inc.</fx:Indicador> 
+					<fx:CIA></fx:CIA> 
+					<fx:blank></fx:blank> 
+				</fx:Object> 
+				<fx:Object> 
+					<fx:Indicador>Utilidad Semanal.</fx:Indicador> 
+					<fx:CIA></fx:CIA> 
+					<fx:blank></fx:blank> 
+				</fx:Object> 
+				<fx:Object> 
+					<fx:Indicador>Incremento de venta.</fx:Indicador> 
+					<fx:CIA></fx:CIA> 
+					<fx:blank></fx:blank> 
+				</fx:Object> 
+				<fx:Object> 
+					<fx:Indicador>Inversion Inc.</fx:Indicador> 
+					<fx:CIA></fx:CIA> 
+					<fx:blank></fx:blank> 
+				</fx:Object> 
+			</s:ArrayList> 
+		</s:dataProvider>
+	</s:DataGrid>
+	
+	<s:DataGrid x="0" y="720" width="900" styleName="tabla" fontSize="40" height="609" selectionColor="0xFF7F00" > 
+		<s:columns> 
+			<s:ArrayList>
+				<!-- Define columns propeties here -->
+				<s:GridColumn dataField="Indicador"/> 
+				<s:GridColumn dataField="CIA"/> 
+				<s:GridColumn dataField=""/>
+			</s:ArrayList>
+		</s:columns> 
+		<s:dataProvider>
+			<s:ArrayList> 		
+				<fx:Object> 
+					<fx:Indicador>Inversion Inc.</fx:Indicador> 
+				</fx:Object> 
+				<fx:Object> 
+					<fx:Indicador>Días de rotacion pro</fx:Indicador> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Indicador>Utilidad</fx:Indicador> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Indicador>Utilidad Mensual</fx:Indicador> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Indicador>Recom Doble vista</fx:Indicador> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Indicador>Utilidad</fx:Indicador> 
+				</fx:Object>
+				<fx:Object> 
+					<fx:Indicador>Utilidad</fx:Indicador> 
+				</fx:Object>
+			</s:ArrayList> 
+		</s:dataProvider>
+	</s:DataGrid>
+	
+	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
+
+</s:View>
