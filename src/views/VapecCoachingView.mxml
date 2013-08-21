@@ -54,6 +54,19 @@
 			
 		]]>
 	</fx:Script>
+	
+	<!--<s:navigationContent>
+		<s:Button id="ok1" 
+				  styleName="boton" 
+				  icon="assets/images/ok.png" x="615" y="437" click="trace();navigator.pushView(VapecMenuOnView,data);" >
+		</s:Button>
+	</s:navigationContent>-->
+	
+	<s:titleContent>
+		<s:Label id="user_lbl" text="{data.user_name}">
+		</s:Label>
+	</s:titleContent>
+	
 <s:Group>
 	<s:Label x="-40" y="8" fontSize="30">
 		Rutas:

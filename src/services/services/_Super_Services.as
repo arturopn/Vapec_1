@@ -26,7 +26,7 @@ internal class _Super_Services extends com.adobe.fiber.services.wrapper.WebServi
         var operation:mx.rpc.soap.mxml.Operation;
 
         operation = new mx.rpc.soap.mxml.Operation(null, "getByteArray");
-         operation.resultType = ByteArray;
+        operation.resultType = ByteArray;
         operations["getByteArray"] = operation;
 
         _serviceControl.operations = operations;
@@ -47,17 +47,32 @@ internal class _Super_Services extends com.adobe.fiber.services.wrapper.WebServi
     {
 
 
-        _serviceControl.service = "Services";
-        _serviceControl.port = "SwBaseServicesWSInterfacePort";
-        wsdl = "http://192.168.2.4:8991/sicsweb-services/Services?WSDL";
+        _serviceControl.service = getWSDLServiceName();
+        _serviceControl.port = getWSDLPort();
+        wsdl = getWSDLURL(); 
         model_internal::loadWSDLIfNecessary();
+    }
+
+	protected function getWSDLServiceName():String
+	{
+        return "Services";
+    }
+
+	protected function getWSDLPort():String
+	{
+		return "SwBaseServicesWSInterfacePort";
+	}
+
+    protected function getWSDLURL():String
+    {
+    	return "http://192.168.2.4:8991/sicsweb-services/Services?WSDL";
     }
     
 
     /**
-      * This method is a generated wrapper used to call the 'getByteArray' operation. It returns an mx.rpc.AsyncToken whose 
-      * result property will be populated with the result of the operation when the server response is received. 
-      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
+      * This method is a generated wrapper used to call the 'getByteArray' operation. It returns an mx.rpc.AsyncToken whose
+      * result property will be populated with the result of the operation when the server response is received.
+      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value.
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
       *
       * @see mx.rpc.AsyncToken
@@ -69,7 +84,7 @@ internal class _Super_Services extends com.adobe.fiber.services.wrapper.WebServi
     {
         model_internal::loadWSDLIfNecessary();
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getByteArray");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
+        var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
         return _internal_token;
     }
      

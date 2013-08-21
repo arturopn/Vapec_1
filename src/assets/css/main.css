@@ -20,12 +20,40 @@ global
 	rollOverColor:"#FF7F00";
 	selectionColor:"0xFF7F00";
 }
+s|DataGrid
+{
+	skinClass:ClassReference("skins.HeaderLessDataGrid");
+	/*alternatingRowColors:#FFFFFF,#6BA6F1;
+	borderVisible:"false";*/
+	borderThickness:0;
+	/*alternatingItemColors: #FFFFFF,#6BA6F1;*/
+	fontSize:21;
+	lineHeight:"120%";
+	textRollOverColor:"#FF7F00";
+	selectionColor:"0xFF7F00";
+}
 .title{
 	skinClass:ClassReference("skins.titlesSkin");
 }
-.boton{
+.title_label{
+	skinClass:ClassReference("skins.titlesSkin");
+	paddingTop:10px;
+	paddingBottom:10px;
+	backgroundColor: #6BA6F1;
+	textAlign: center;
+}
+/*.boton{
 	skinClass: ClassReference("skins.botonSkin");
-	chromeColor: #FFFFFF;
+	chromeColor: #CCCCCC;
+}
+.boton_off{
+	skinClass: ClassReference("skins.botonSkin");
+	chromeColor: #000000;
+}*/
+s|Button
+{
+	skinClass: ClassReference("skins.botonSkin");
+	chromeColor: #CCCCCC;
 }
 .bigLabel{
 	fontSize:30;

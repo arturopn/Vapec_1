@@ -4,13 +4,7 @@
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	<fx:Style>
-		@namespace s "library://ns.adobe.com/flex/spark";
-		.boton{
-			skinClass:ClassReference("skins.botonSkin");
-			/*chromeColor: #FFFFFF;*/
-		}
-	</fx:Style>
+	
 	<fx:Script>
 		<![CDATA[
 			import com.google.zxing.BarcodeFormat;
@@ -29,6 +23,21 @@
 			import com.google.zxing.qrcode.QRCodeReader;
 			import com.google.zxing.qrcode.detector.Detector;
 			import com.pepsico.vapec.webservices.WebserviceManager;
+			
+			import flash.events.TimerEvent;
+			import flash.utils.Timer;
+			
+			import mx.events.FlexEvent;
+			
+			import spark.events.ViewNavigatorEvent;
+			
+			protected var camera:Camera;
+			private var videoDisplay:Video=new Video(360, 360);
+			private var qrReader:QRCodeReader;
+			private var bar:DataMatrixReader;
+			private var bmd:BitmapData;
+			private var cameraStarted:Boolean = false;
+			
 			
 			import flash.events.TimerEvent;
 			import flash.utils.Timer;
@@ -140,11 +149,24 @@
 				return ht;
 			}
 			
+			
 		protected function links():void
-			{
-			{bi.visible = !bi.visible};
-				navigator.pushView(VapecMenuOnView);
+		{
+				{	bi.visible = !bi.visible};
 				
+				
+				
+				var user_data:Object = new Object();
+				user_data.user_name = "User Started";
+				user_data.user_coaching = true;
+				user_data.user_agenda = true;
+				user_data.user_reports = true;
+				user_data.user_EOD = true;
+				user_data.user_comm = true;
+				
+				/*var _login:Test = Test(PopUpManager.createPopUp(this, Test, true));
+				PopUpManager.centerPopUp(_login);*/
+				navigator.pushView(VapecMenuOnView,user_data);
 			}
 			
 		protected function busy():void
@@ -162,6 +184,13 @@
 			
 		]]>
 	</fx:Script>
+	
+	<!--<s:navigationContent>
+		<s:Button id="ok1" 
+				  styleName="boton" 
+				  icon="assets/images/ok.png" x="615" y="437" click="trace();navigator.pushView(VapecMenuOnView,data);" >
+		</s:Button>
+	</s:navigationContent>-->
 
     <s:Image x="24" y="21" source="assets/images/supervisor_comp.png">		
 	</s:Image>

@@ -30,6 +30,12 @@
 			
 		      //consoleLabel.text;
 			
+			protected function validateLogin():void
+			{
+				navigator.pushView(s2221ReporteIndicadores); 
+				busy();
+			}
+			
 			protected function button_clickHandler(event:MouseEvent):void
 			{
 				var wsMgr:WebserviceManager = new WebserviceManager();
@@ -81,6 +87,7 @@
 			
 		]]>
 	</fx:Script>
+	<s:navigationContent/>
 	
 	<s:Image id="home" x="0" y="0" width="{width1}" height="{height1}"
 			 source="{imagen}"/>
@@ -91,6 +98,6 @@
 	<s:TextInput enabled="true" text="" x="400" y="930"/>
 	<s:Label text="Contraseña:" x="236" y="1050"/>
 	<s:TextInput enabled="true" text="" x="400" y="1030"/>
-	<s:Button x="161" styleName="boton" y="145" width="231" label="ENTRAR" color="blue" click="navigator.pushView(VapecMenuView); busy()"/>
+	<s:Button x="161" styleName="boton" y="145" width="231" label="ENTRAR" color="blue" click="validateLogin()"/>
 	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
 </s:View>
