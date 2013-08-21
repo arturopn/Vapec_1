@@ -91,6 +91,6 @@
 	<s:TextInput enabled="true" text="" x="400" y="930"/>
 	<s:Label text="Contraseña:" x="236" y="1050"/>
 	<s:TextInput enabled="true" text="" x="400" y="1030"/>
-	<s:Button x="161" styleName="boton" y="145" width="231" label="ENTRAR" color="blue" click="navigator.pushView(s2120MotivosdeEscaneo); busy()"/>
+	<s:Button x="161" styleName="boton" y="145" width="231" label="ENTRAR" color="blue" click="navigator.pushView(VapecMenuView); busy()"/>
 	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
 </s:View>
