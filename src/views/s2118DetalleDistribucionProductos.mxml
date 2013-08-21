@@ -83,15 +83,15 @@
 	<s:Image x="0" y="430" source="assets/images/titles/datosdeVenta.png"></s:Image>
 	
 	
-	<s:DataGrid x="0" y="475" width="900" styleName="tabla" fontSize="40" height="893" selectionColor="0xFF7F00" > 
+	<s:DataGrid x="0" y="475" width="{width1}" styleName="tabla" fontSize="40" height="893" selectionColor="0xFF7F00" > 
 		<s:columns>
 			<s:ArrayList>
-				<s:GridColumn datafield="Clientes"></s:GridColumn>
-				<s:GridColumn datafield="Producto"></s:GridColumn>
-				<s:GridColumn datafield="S3B8"></s:GridColumn>
-				<s:GridColumn datafield="S2B8"></s:GridColumn>
-				<s:GridColumn datafield="S1BB"></s:GridColumn>
-				<s:GridColumn datafield="S1BBB"></s:GridColumn>
+				<s:GridColumn dataField="Clientes"></s:GridColumn>
+				<s:GridColumn dataField="Producto"></s:GridColumn>
+				<s:GridColumn dataField="S3B8"></s:GridColumn>
+				<s:GridColumn dataField="S2B8"></s:GridColumn>
+				<s:GridColumn dataField="S1BB"></s:GridColumn>
+				<s:GridColumn dataField="S1BBB"></s:GridColumn>
 			</s:ArrayList>
 		</s:columns>
 		<s:dataProvider>

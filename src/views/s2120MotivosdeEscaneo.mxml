@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" title="VapecMotivoEscaneoView">
+		xmlns:s="library://ns.adobe.com/flex/spark" title="VapecMotivoEscaneoView"
+		addedToStage="addedToStage()" creationComplete="checkOrientation()"
+		>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -23,6 +25,11 @@
 		<![CDATA[
 			import com.pepsico.vapec.webservices.WebserviceManager;
 			
+			[Bindable]
+			public var width1="";
+			
+			[Bindable]
+			private var height1="";
 			//consoleLabel.text;
 			
 			protected function button_clickHandler(event:MouseEvent):void
@@ -46,10 +53,37 @@
 				{bi.visible = !bi.visible}
 			}
 			
+			// FUNCTION THAT RUNS addToStage
+			// EVENT LISTENER IS SETUP HERE
+			
+			public function addedToStage(event:Event = null):void
+			{
+				stage.addEventListener(StageOrientationEvent.ORIENTATION_CHANGE, checkOrientation);
+			}
+			
+			// FUNCTION THAT SWITCHES VIEW STATES
+			// CALLED FROM addToStage & creationComplete
+			
+			private function checkOrientation(event:StageOrientationEvent = null):void
+			{
+				if (stage == null)
+				{
+					width  = Capabilities.screenResolutionX;
+					height = Capabilities.screenResolutionY;
+				}
+				else
+				{
+					width = stage.stageWidth;
+					height = stage.stageHeight;
+				}
+				if (width > height) { width1="900"; height1="1443"}
+				else { height1="900"; width1="1443"}
+				
+			}
 		]]>
 	</fx:Script>
 	
-	<s:SkinnableContainer x="-1" y="44" width="901" styleName="title">
+	<s:SkinnableContainer x="-1" y="44" styleName="title">
 		<s:Label  color="#FFFFFF" text="2120 Motivos de Escaneo">
 			
 		</s:Label>
@@ -61,7 +95,7 @@
 	</s:Button>
 	
 	<s:BusyIndicator id="bi" visible="false" x="400" y="614" width="97" height="82"/>
-	<s:List x="-1" y="128" width="901" height="559">
+	<s:List x="-1" y="128" width="{width1}">
 		<s:ArrayCollection>
 			<fx:String>NO TENGO SCANER</fx:String> 
 			<fx:String>NO TIENE CODIGO DE BARRAS</fx:String> 
