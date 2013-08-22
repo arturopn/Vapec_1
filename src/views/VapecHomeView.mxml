@@ -2,6 +2,7 @@
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" title="HomeView" backKeyPressed="busy()"
 		addedToStage="addedToStage()" creationComplete="checkOrientation()"
+		activate="checkOrientation()"
 		>
 
 	<fx:Declarations>
@@ -23,10 +24,10 @@
 			private var imagen="";
 			
 			[Bindable]
-			private var width1="";
+			private var width1:Number =0;
 			
 			[Bindable]
-			private var height1="";
+			private var height1:Number =0;
 			
 		      //consoleLabel.text;
 			
@@ -80,9 +81,13 @@
 					width = stage.stageWidth;
 					height = stage.stageHeight;
 				}
+				imagen ="assets/images/loginbg.png"; 
+				width1=navigator.activeView.width; 
+				height1=navigator.activeView.height;
 				
-				if (width > height) { imagen ="assets/images/loginbg.png"; width1="900"; height1="1443"}
-				else { imagen ="assets/images/login_horizontal.png"; height1="900"; width1="1443"}
+				
+				if (width > height) { imagen ="assets/images/loginbg.png"; }
+				if (width < height && stage!=null) { imagen ="assets/images/login_horizontal.png";}
 			}
 			
 		]]>
